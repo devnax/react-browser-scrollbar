@@ -10,6 +10,7 @@
   "engines": {
     "node": ">=10"
   },
+  "description": "lightweight Scrollbar for ReactJs",
   "keywords": ["React Browser Scrollbar", "React Scrollbar", "Scrollbar", "Custom Scrollbar"],
   "scripts": {
     "start": "tsdx watch",
