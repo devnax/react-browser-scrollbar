@@ -13,7 +13,7 @@ interface Props{
   children: ReactChild | ReactNode;
   darkMode?: boolean;
   autoHide?: boolean;
-  onScroll?: (e: SyntheticEvent, options: ScrollProps) => {};
+  onScroll?: (e?: any, options?: ScrollProps) => {};
 }
 
 
@@ -28,7 +28,8 @@ const Scrollbar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Pr
     className={cls} 
     onScroll={(e: SyntheticEvent) => {
       const ele: any = e.target
-      const scrollTop     = ele.offsetTop
+      
+      const scrollTop     = ele.scrollTop
       const scrollLeft    = ele.scrollLeft
       const scrollHeight  = ele.scrollHeight
       const clientHeight  = ele.clientHeight
