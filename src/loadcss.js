@@ -1,73 +1,64 @@
 ;(() => {
    const is = document.getElementById('rbs')
-   if(!is){
+   if (!is) {
       const style = document.createElement('style')
       style.id = 'rbs'
       document.head.append(style)
-   style.innerHTML = `
+      style.innerHTML = `
+
+     body{
+        color: #fff;
+        background: #36393f
+     }
    .rbs{
       width: 100%;
       height: 100%;
       overflow: auto;
    }
    
-
    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
    }
+
    ::-webkit-scrollbar-track {
-      background: rgba(0,0,0,.05);
+      background: transparent
    }
    ::-webkit-scrollbar-thumb {
       border-radius: 8px;
+      -webkit-border-radius: 8px;
       background-clip: content-box;
-      background-color: #ccc;
+      background: rgba(11,20,26,.2);
       
    }
-   ::-webkit-scrollbar-thumb:hover {
-      background: #bbb; 
+   ::-webkit-scrollbar-thumb:hover{
+      background: rgba(11,20,26,.3)
    }
-   .rbs-dark::-webkit-scrollbar-thumb{
-      background: #36393f
-   }
-   .rbs-dark::-webkit-scrollbar-thumb:hover{
-      background: #202225
-   }
-   .rbs-autohide:not(:active)::-webkit-scrollbar-thumb, .rbs-autohide:not(:active)::-webkit-scrollbar-track{
+   .rbs-autohide:not(:hover, :active)::-webkit-scrollbar-thumb, .rbs-autohide:not(:hover, :active)::-webkit-scrollbar-track{
       background-color: transparent
-   }
-   .rbs-autohide:hover::-webkit-scrollbar-thumb{
-      background-color: #ccc;
-   }
-   .rbs-autohide:hover::-webkit-scrollbar-track{
-      background: rgba(0,0,0,.05)
-   }
-   .rbs-autohide.rbs-dark:hover::-webkit-scrollbar-thumb{
-      background: #36393f
    }
 
    * {
-      scrollbar-color: #ccc rgba(0,0,0,.05);
+      scrollbar-color: rgba(11,20,26,.2) rgba(0,0,0,.05);
       scrollbar-width: thin
    }
 
-   .rbs-dark{
-      scrollbar-color: #36393f rgba(0,0,0,.05);
-   }
-
-   .rbs-autohide:not(:active){
+   .rbs-autohide:not(:hover, :active){
       scrollbar-color: transparent transparent;
    }
 
-   .rbs-autohide:hover{
-      scrollbar-color: #ccc rgba(0,0,0,.05);
+   .rbs-dark::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.16);
    }
 
-   .rbs-autohide.rbs-dark:hover{
-      scrollbar-color: #36393f rgba(0,0,0,.05);
+   .rbs-dark::-webkit-scrollbar-thumb:hover{
+      background: rgba(255,255,255,.26);
    }
-   
+
+   .rbs-dark{
+      scrollbar-color: rgba(255,255,255,.26) tranparent;
+   }
+
 `
    }
 })()

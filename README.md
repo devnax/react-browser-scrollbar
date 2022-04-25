@@ -11,14 +11,18 @@ const App = () => {
       ref={ref}
       autoHide
       darkMode
-      onScroll={(even, options) => {
-        const {
-          scrollTop,
-          scrollLeft,
-          scrollHeight,
-          clientHeight,
-          isScrollDown,
-        } = optins
+      thumbSize={6}
+      onScroll={(event) =>{
+
+      }}
+      onScrollEnd={(event) => {
+        
+      }}
+      onScrollStart={(event) => {
+        
+      }}
+      onScrollStop={(event) => {
+        
       }}
     >
       Children...
