@@ -1,6 +1,6 @@
-import React, {useMemo, forwardRef, ReactChild, ReactNode, HTMLAttributes, UIEvent } from 'react';
+import React, {useEffect, useMemo, forwardRef, ReactChild, ReactNode, HTMLAttributes, UIEvent } from 'react';
 import {uid, customizeStyle} from './helpers'
-import './loadcss.js'
+import loadStyle from './loadStyle'
 
 interface Props {
   children: ReactChild | ReactNode;
@@ -17,6 +17,7 @@ let isScrolling: any = null
 let isStarted: boolean = false
 
 const Scrollbar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Props>(({ children, darkMode, autoHide, thumbSize, onScroll, onScrollEnd, onScrollStop, onScrollStart,  className, ...rest }, ref: any) => {
+  useEffect(() => loadStyle(), [])
   const _uid = useMemo(() => uid(), [])
   let cls = `rbs ${className ? className : ''}`
   cls += darkMode ? ' rbs-dark' : ''

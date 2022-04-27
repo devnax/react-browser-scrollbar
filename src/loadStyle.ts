@@ -1,4 +1,4 @@
-;(() => {
+export default () => {
    const is = document.getElementById('rbs')
    if (!is) {
       const style = document.createElement('style')
@@ -61,4 +61,4 @@
 
 `
    }
-})()
+}
