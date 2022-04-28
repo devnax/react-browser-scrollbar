@@ -5,11 +5,6 @@ export default () => {
       style.id = 'rbs'
       document.head.append(style)
       style.innerHTML = `
-
-     body{
-        color: #fff;
-        background: #36393f
-     }
    .rbs{
       width: 100%;
       height: 100%;
