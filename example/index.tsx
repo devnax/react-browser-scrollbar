@@ -5,7 +5,7 @@ import Scrollbar from '../.';
 
 const App = () => {
 
-  const ref = React.useRef()
+  const ref: any = React.useRef()
 
   React.useEffect(() => {
     console.log(ref);
@@ -15,19 +15,13 @@ const App = () => {
   return (
     <div style={{width: 200, height: 500}}>
       <Scrollbar 
-        darkMode={true}
         ref={ref}
-        autoHide={true}
-        thumbSize={4}
-        onScrollDown={(e: any) => {
-          console.log(e);
-        }}
-        onScrollStart={() => {
-          console.log('onScrollStart');
-          
-        }}
+        autoHide={false}
+        thumbSize={3}
+        
       >
         <div style={{paddingRight: 20}}>
+          <button onClick={() => ref.scrollToBottom()}>Bottom</button>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur nisi, ea recusandae ipsam officiis ut perferendis dolorem commodi culpa blanditiis voluptate facilis et sed autem alias consequatur laboriosam reprehenderit harum.
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur nisi, ea recusandae ipsam officiis ut perferendis dolorem commodi culpa blanditiis voluptate facilis et sed autem alias consequatur laboriosam reprehenderit harum.
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur nisi, ea recusandae ipsam officiis ut perferendis dolorem commodi culpa blanditiis voluptate facilis et sed autem alias consequatur laboriosam reprehenderit harum.
@@ -44,6 +38,7 @@ const App = () => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur nisi, ea recusandae ipsam officiis ut perferendis dolorem commodi culpa blanditiis voluptate facilis et sed autem alias consequatur laboriosam reprehenderit harum.
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur nisi, ea recusandae ipsam officiis ut perferendis dolorem commodi culpa blanditiis voluptate facilis et sed autem alias consequatur laboriosam reprehenderit harum.
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur nisi, ea recusandae ipsam officiis ut perferendis dolorem commodi culpa blanditiis voluptate facilis et sed autem alias consequatur laboriosam reprehenderit harum.
+        <button onClick={() => ref.scrollToTop()}>Top</button>
         </div>
       </Scrollbar>
     </div>

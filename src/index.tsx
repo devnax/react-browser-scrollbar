@@ -1,11 +1,12 @@
-import React, {useEffect, useMemo, forwardRef, ReactChild, ReactNode, HTMLAttributes, UIEvent } from 'react';
-import {uid, customizeStyle} from './helpers'
+import React, {useId, useEffect, forwardRef, ReactChild, ReactNode, HTMLAttributes, UIEvent } from 'react';
+import { customizeStyle} from './helpers'
 import loadStyle from './loadStyle'
 
 interface Props {
   children: ReactChild | ReactNode;
   darkMode?: boolean;
   autoHide?: boolean;
+  hide?: boolean;
   thumbSize?: number;
   onScrollEnd?: (e: UIEvent<HTMLDivElement>) => void;
   onScrollStop?: (e: UIEvent<HTMLDivElement>) => void;
@@ -16,12 +17,26 @@ interface Props {
 let isScrolling: any = null
 let isStarted: boolean = false
 
-const Scrollbar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Props>(({ children, darkMode, autoHide, thumbSize, onScroll, onScrollEnd, onScrollStop, onScrollStart,  className, ...rest }, ref: any) => {
-  useEffect(() => loadStyle(), [])
-  const _uid = useMemo(() => uid(), [])
+const Scrollbar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Props>(({ children, darkMode, autoHide, hide, thumbSize, onScroll, onScrollEnd, onScrollStop, onScrollStart,  className, ...rest }, ref: any) => {
+  useEffect(() => {
+    if(ref){
+      ref.scrollTo = (pos: number) => {
+        ref.current.scrollTo({ top: pos, behavior: 'smooth' })
+      }
+      ref.scrollToBottom = () => {
+        ref.scrollTo(ref.current.scrollHeight)
+      }
+      ref.scrollToTop = () => {
+        ref.scrollTo(0)
+      }
+    }
+    loadStyle()
+  }, [])
+  const _uid = useId().replace(/:/gi, '')
+
   let cls = `rbs ${className ? className : ''}`
   cls += darkMode ? ' rbs-dark' : ''
-  cls += autoHide ? ' rbs-autohide' : ''
+  cls += autoHide && !hide ? ' rbs-autohide' : ''
 
   const props: any = {}
 
@@ -51,7 +66,7 @@ const Scrollbar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Pr
   }
 
   return <>
-    <style>{customizeStyle({id: _uid, thumbSize, autoHide})}</style>
+    <style>{customizeStyle({id: _uid, thumbSize, autoHide, hide})}</style>
     <div
       {...rest}
       ref={ref}
