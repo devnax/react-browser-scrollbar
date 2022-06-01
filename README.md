@@ -19,7 +19,6 @@ const App = () => {
       ref={ref}
       autoHide
       darkMode
-      hide={false}
       thumbSize={6}
       onScroll={(event) =>{
 

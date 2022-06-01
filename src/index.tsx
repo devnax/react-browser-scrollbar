@@ -6,7 +6,6 @@ interface Props {
   children: ReactChild | ReactNode;
   darkMode?: boolean;
   autoHide?: boolean;
-  hide?: boolean;
   thumbSize?: number;
   onScrollEnd?: (e: UIEvent<HTMLDivElement>) => void;
   onScrollStop?: (e: UIEvent<HTMLDivElement>) => void;
@@ -17,7 +16,7 @@ interface Props {
 let isScrolling: any = null
 let isStarted: boolean = false
 
-const Scrollbar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Props>(({ children, darkMode, autoHide, hide, thumbSize, onScroll, onScrollEnd, onScrollStop, onScrollStart,  className, ...rest }, ref: any) => {
+const Scrollbar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Props>(({ children, darkMode, autoHide, thumbSize, onScroll, onScrollEnd, onScrollStop, onScrollStart,  className, ...rest }, ref: any) => {
   useEffect(() => {
     if(ref){
       ref.scrollTo = (pos: number) => {
@@ -36,7 +35,7 @@ const Scrollbar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Pr
 
   let cls = `rbs ${className ? className : ''}`
   cls += darkMode ? ' rbs-dark' : ''
-  cls += autoHide && !hide ? ' rbs-autohide' : ''
+  cls += autoHide ? ' rbs-autohide' : ''
 
   const props: any = {}
 
@@ -66,7 +65,7 @@ const Scrollbar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Pr
   }
 
   return <>
-    <style>{customizeStyle({id: _uid, thumbSize, autoHide, hide})}</style>
+    <style>{customizeStyle({id: _uid, thumbSize, autoHide})}</style>
     <div
       {...rest}
       ref={ref}

@@ -16,9 +16,8 @@ const App = () => {
     <div style={{width: 200, height: 500}}>
       <Scrollbar 
         ref={ref}
-        autoHide={false}
-        thumbSize={3}
-        
+        autoHide
+        thumbSize={1}
       >
         <div style={{paddingRight: 20}}>
           <button onClick={() => ref.scrollToBottom()}>Bottom</button>
